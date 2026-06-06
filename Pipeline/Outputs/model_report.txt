@@ -1,0 +1,47 @@
+
+CHURN MODEL REPORT
+==================
+Model       : XGBoost Classifier
+Date        : 2024
+Dataset     : 15,167 members (Active + Churned)
+Features    : 32
+Train/Test  : 80% / 20% stratified split
+Imbalance   : Handled with SMOTE + scale_pos_weight=15.9
+
+PERFORMANCE METRICS
+-------------------
+AUC-ROC             : 0.9208
+AUC-PR              : 0.7749
+Lift @ top 20%      : 4.2x
+Churners captured   : 84.4% in top 20% scored members
+
+CLASSIFICATION REPORT (threshold = 0.5)
+              precision    recall  f1-score   support
+
+      Active       0.99      0.93      0.96      2854
+     Churned       0.43      0.79      0.56       180
+
+    accuracy                           0.93      3034
+   macro avg       0.71      0.86      0.76      3034
+weighted avg       0.95      0.93      0.94      3034
+
+
+TOP 10 FEATURES (SHAP)
+                 feature  mean_abs_shap
+months_since_last_flight       2.280836
+        active_months_3m       0.606131
+enrollment_tenure_months       0.444054
+  marital_status_Married       0.349881
+       active_months_18m       0.316838
+       education_encoded       0.298622
+                     clv       0.259815
+            flight_trend       0.246645
+         pts_redeemed_3m       0.241710
+             gender_Male       0.231114
+
+RISK TIER SUMMARY (all 16,737 members)
+risk_tier
+Low Risk       13039
+Dormant         1570
+High Risk       1203
+Medium Risk      925
