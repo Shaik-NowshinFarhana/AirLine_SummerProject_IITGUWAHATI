@@ -1,0 +1,7 @@
+Category,Issue,N_Affected,Action,Reason
+Travel,Monthly flights > 30,2,Capped at 30,30 flights/month is ~1 per day; beyond this is likely a data entry error
+Points,Redemption > 0 with same-month earnings = 0,2918,Kept as-is,Redemption draws from accumulated balance; same-month zero earning is perfectly valid
+Points,Lifetime redeemed > lifetime earned,11,Flagged with 'over_redeem_flag' in loyalty table,Possible partner transfers or system migration artefacts; kept to avoid losing valid members
+CLV,CLV > 99th pct (35929),168,Flagged with 'high_clv_flag'; not capped,Top CLV members are genuinely valuable; capping would distort segmentation
+CLV,High CLV but low flight activity,1084,Flagged with 'clv_activity_mismatch_flag',"CLV may include non-flight spend (partner programs, credit card). These members need separate treatment in segmentation"
+Demographics,First flight before enrollment date,498,Flagged; enrollment date set to first_flight_date for these members,Flight records pre-date enrollment; likely data migration issue. Using first flight date as proxy enrollment date.
