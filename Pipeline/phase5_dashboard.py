@@ -19,7 +19,8 @@ st.set_page_config(
     initial_sidebar_state = "expanded"
 )
 
-OUTPUT_DIR = "Outputs"
+BASE_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = BASE_DIR / "Outputs"
 
 # ── Colour palette ────────────────────────────────────────────────────────────
 COLORS = {
@@ -59,7 +60,9 @@ def load_data():
     members = members.merge(features[flight_cols], on="loyalty_number", how="left")
 
     return members, profiles, shap_imp, features
-
+st.write("Dashboard file:", __file__)
+st.write("Output path:", OUTPUT_DIR)
+st.write("Exists:", OUTPUT_DIR.exists())
 members, profiles, shap_imp, features = load_data()
 
 # Fix cluster name duplicates — remap based on behaviour profile
