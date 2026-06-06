@@ -19,7 +19,7 @@ st.set_page_config(
     initial_sidebar_state = "expanded"
 )
 
-OUTPUT_DIR = "outputs"
+OUTPUT_DIR = "Outputs"
 
 # ── Colour palette ────────────────────────────────────────────────────────────
 COLORS = {
