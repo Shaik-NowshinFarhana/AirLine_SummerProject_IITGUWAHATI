@@ -1,0 +1,8 @@
+Issue,Decision,Reason
+Missing salary (4238 rows),Filled with 'Unknown' category,Salary band is categorical; imputing median would imply false precision
+Null cancellation_year,Kept as null — indicates active member,Null cancellation date means member has NOT cancelled; this is valid data
+No single date column in flights,Combined year + month into activity_date (YYYY-MM-01),Required for time-series feature engineering in later phases
+1922 duplicate rows in Flights,Dropped exact duplicates,Exact duplicates are data entry errors; retaining would inflate counts
+3892 duplicate member-month rows in flights,Aggregated by summing numeric columns,A member cannot have two separate records for the same month; sum is the correct aggregation for counts and distances
+11 members redeem more points than earned (lifetime),Flagged with column 'points_anomaly_flag'; kept in dataset,Could indicate points transferred from partner programs; removing would lose valid members
+1570 members with zero total flights over full period,Kept; tagged as 'never_flew' flag in loyalty table,Never-flew members are a distinct churn-risk segment; removing them would undercount at-risk population
